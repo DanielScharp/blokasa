@@ -37,10 +37,17 @@ export function Catalog() {
                   </ul>
                 </div>
                 <div className={styles.footer}>
+                  {item.slug === 'piso-intertravado-retangular' ? (
+                    <a href="/produtos/piso-intertravado-retangular" className={styles.specify}>
+                      Ver ficha técnica completa
+                      <img src={asset('home/icon-arrow-right.svg')} alt="" width={12} height={12} />
+                    </a>
+                  ) : (
                   <a href="#orcamento" className={styles.specify} onClick={() => setModel(item.slug)}>
                     Especificar no orçamento
                     <img src={asset('home/icon-arrow-right.svg')} alt="" width={12} height={12} />
                   </a>
+                  )}
                 </div>
               </li>
             )
