@@ -20,7 +20,7 @@ export function Metrics() {
 
         <figure className={styles.testimonial}>
           <span className={styles.quoteIcon} aria-hidden>
-            <img src={asset('home/quote.svg')} alt="" width={25.5} height={18} />
+            <img src={asset('home/professional-man.jpg')} alt=""  />
           </span>
           <div className={styles.quoteBody}>
             <blockquote className={styles.quote}>"{testimonial.quote}"</blockquote>

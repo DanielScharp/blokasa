@@ -75,8 +75,16 @@
   flex-shrink: 0;
   width: 80px;
   height: 80px;
-  border-radius: var(--radius-pill);
+  border-radius: 50%;
+  overflow: hidden;
   background: var(--color-forest);
+}
+
+.quoteIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .quoteBody {

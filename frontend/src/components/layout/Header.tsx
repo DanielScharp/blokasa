@@ -42,9 +42,9 @@ export function Header() {
             Solicitar orçamento
           </ButtonLink>
           {/* A área do cliente (login e meus orçamentos) entra numa próxima etapa */}
-          <a href="/entrar" className={styles.account} aria-label="Área do cliente">
+          {/* <a href="/entrar" className={styles.account} aria-label="Área do cliente">
             <img src={asset('home/icon-user.svg')} alt="" width={12} height={12} />
-          </a>
+          </a> */}
           <button
             type="button"
             className={styles.menuButton}
