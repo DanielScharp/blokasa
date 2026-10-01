@@ -8,7 +8,7 @@ export function Metrics() {
       <div className={`container ${styles.inner}`}>
         <dl className={styles.metrics}>
           {metrics.map((m) => (
-            <div key={m.title} className={styles.metric}>
+            <div key={m.title} className={styles.metric} data-reveal>
               <dt className={styles.srOnlyWrap}>
                 <span className={`${styles.value} ${styles[m.tone]}`}>{m.value}</span>
                 <span className={styles.title}>{m.title}</span>
@@ -18,7 +18,7 @@ export function Metrics() {
           ))}
         </dl>
 
-        <figure className={styles.testimonial}>
+        <figure className={styles.testimonial} data-reveal="zoom">
           <span className={styles.quoteIcon} aria-hidden>
             <img src={asset('home/professional-man.jpg')} alt=""  />
           </span>

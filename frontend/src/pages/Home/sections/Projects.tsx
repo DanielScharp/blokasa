@@ -15,12 +15,12 @@ export function Projects() {
             title="Resultados reais em obras concluídas"
             subtitle="Casas contemporâneas, condomínios fechados, eixos comerciais e empreendimentos logísticos com os pisos Blokasa."
           />
-          <p className={styles.stat}>+350.000 m² pavimentados</p>
+          <p className={styles.stat} data-reveal="right">+350.000 m² pavimentados</p>
         </div>
 
         <ul className={styles.bento}>
           {projects.map((p, i) => (
-            <li key={p.title} className={`${styles.card} ${styles[`c${i + 1}`]}`}>
+            <li key={p.title} className={`${styles.card} ${styles[`c${i + 1}`]}`} data-reveal="zoom">
               <img src={asset(p.image)} alt={p.title} loading="lazy" />
               <span className={styles.tag}>{p.tag}</span>
               <div className={styles.caption}>

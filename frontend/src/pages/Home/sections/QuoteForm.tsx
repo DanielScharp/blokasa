@@ -90,7 +90,7 @@ export function QuoteForm() {
   return (
     <section id="orcamento" className={styles.section} aria-labelledby="orcamento-title">
       <div className="container">
-        <div className={styles.card}>
+        <div className={styles.card} data-reveal="zoom">
           <span className={styles.glow} aria-hidden />
 
           <header className={styles.header}>

@@ -39,7 +39,7 @@ export function Process() {
 
         <ol className={styles.grid}>
           {steps.map((s) => (
-            <li key={s.n} className={styles.card}>
+            <li key={s.n} className={styles.card} data-reveal>
               <div className={styles.top}>
                 <div className={styles.row}>
                   <span className={`${styles.number} ${styles[s.tone]}`}>{s.n}</span>
