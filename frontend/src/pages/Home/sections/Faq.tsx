@@ -25,7 +25,7 @@ export function Faq() {
             const panelId = `${baseId}-p${i}`
             const buttonId = `${baseId}-b${i}`
             return (
-              <div key={f.q} className={styles.item}>
+              <div key={f.q} className={styles.item} data-reveal>
                 <h3 className={styles.heading}>
                   <button
                     id={buttonId}

@@ -1,3 +1,4 @@
+import { useReveal } from '../../components/ui/useReveal'
 import { QuoteSelectionProvider } from './quoteSelection'
 import { Benefits } from './sections/Benefits'
 import { Catalog } from './sections/Catalog'
@@ -11,6 +12,8 @@ import { TrustBar } from './sections/TrustBar'
 import { UsageGuide } from './sections/UsageGuide'
 
 export default function Home() {
+  useReveal()
+
   return (
     <QuoteSelectionProvider>
       <Hero />

@@ -14,7 +14,7 @@ export function UsageGuide() {
   return (
     <section id="aplicacoes" className={styles.section} aria-labelledby="aplicacoes-title">
       <div className={`container ${styles.grid}`}>
-        <div className={styles.panel}>
+        <div className={styles.panel} data-reveal="left">
           <div className={styles.panelTop}>
             <p className={styles.badge}>Guia prático de dimensionamento</p>
             <h2 id="aplicacoes-title" className={styles.title}>
@@ -48,7 +48,7 @@ export function UsageGuide() {
           </ButtonLink>
         </div>
 
-        <figure className={styles.photo}>
+        <figure className={styles.photo} data-reveal="right" data-reveal-delay="150">
           <img src={asset('home/uso-foto.png')} alt="Área comercial pavimentada com piso intertravado" loading="lazy" />
           <figcaption className={styles.caption}>
             <span>

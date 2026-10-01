@@ -22,7 +22,7 @@ export function Catalog() {
           {featuredProducts.map((item) => {
             const product = getProduct(item.slug)
             return (
-              <li key={item.slug} className={styles.card}>
+              <li key={item.slug} className={styles.card} data-reveal="zoom">
                 <div className={styles.media}>
                   <img src={asset(item.image)} alt={item.title} loading="lazy" />
                   {product && <span className={styles.badge}>Espessuras: {formatThicknesses(product)}</span>}

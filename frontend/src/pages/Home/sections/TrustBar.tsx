@@ -13,7 +13,7 @@ export function TrustBar() {
     <section className={styles.bar} aria-label="Diferenciais">
       <ul className={`container ${styles.list}`}>
         {items.map((it) => (
-          <li key={it.title} className={styles.item}>
+          <li key={it.title} className={styles.item} data-reveal>
             <span className={`${styles.icon} ${it.accent ? styles.iconAccent : ''}`}>
               <img src={asset(it.icon)} alt="" width={it.w} height={it.h} />
             </span>

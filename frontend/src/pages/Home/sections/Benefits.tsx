@@ -43,7 +43,7 @@ export function Benefits() {
 
         <ul className={styles.grid}>
           {items.map((it) => (
-            <li key={it.title} className={styles.card}>
+            <li key={it.title} className={styles.card} data-reveal>
               <div className={styles.top}>
                 <span className={styles.icon}>
                   <img src={asset(it.icon)} alt="" width={it.w} height={it.h} />
@@ -59,7 +59,7 @@ export function Benefits() {
           ))}
         </ul>
 
-        <a href="#duvidas" className={styles.more}>
+        <a href="#duvidas" className={styles.more} data-reveal="fade">
           Consultar memorial descritivo e ensaios tecnológicos
           <img src={asset('home/ben-arrow.svg')} alt="" width={15} height={10.5} />
         </a>

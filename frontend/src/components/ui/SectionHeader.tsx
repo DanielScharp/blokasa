@@ -13,11 +13,17 @@ interface Props {
 export function SectionHeader({ eyebrow, title, subtitle, align = 'left', eyebrowTone = 'primary', id }: Props) {
   return (
     <header className={`${styles.header} ${align === 'center' ? styles.center : ''}`}>
-      <p className={`${styles.eyebrow} ${eyebrowTone === 'forest' ? styles.eyebrowForest : ''}`}>{eyebrow}</p>
-      <h2 id={id} className={styles.title}>
+      <p data-reveal className={`${styles.eyebrow} ${eyebrowTone === 'forest' ? styles.eyebrowForest : ''}`}>
+        {eyebrow}
+      </p>
+      <h2 data-reveal id={id} className={styles.title}>
         {title}
       </h2>
-      {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+      {subtitle && (
+        <p data-reveal className={styles.subtitle}>
+          {subtitle}
+        </p>
+      )}
     </header>
   )
 }
