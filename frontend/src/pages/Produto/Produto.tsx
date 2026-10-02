@@ -2,7 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react'
 import { Button, ButtonLink } from '../../components/ui/Button'
 import { company } from '../../data/company'
 import { colorHex, getProduct, rectangularSpecs } from '../../data/catalog'
-import { buildWhatsAppQuote, maskPhone, validateQuote, type QuoteErrors } from '../../services/quotes'
+import { buildWhatsAppQuote, maskPhone, quoteLimits, validateQuote, type QuoteErrors } from '../../services/quotes'
 import styles from './Produto.module.css'
 
 const patterns = [
@@ -129,13 +129,14 @@ function QuoteSection() {
 
               <label>
                 Nome completo *
-                <input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
+                <input maxLength={quoteLimits.name} value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
                 {errors.name && <small>{errors.name}</small>}
               </label>
               <label>
                 E-mail corporativo *
                 <input
                   type="email"
+                  maxLength={quoteLimits.email}
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                 />
@@ -144,6 +145,7 @@ function QuoteSection() {
               <label>
                 WhatsApp / Telefone *
                 <input
+                  maxLength={quoteLimits.phone}
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: maskPhone(e.target.value) }))}
                 />
@@ -152,6 +154,7 @@ function QuoteSection() {
               <label>
                 Cidade e UF da obra *
                 <input
+                  maxLength={quoteLimits.cityState}
                   value={form.cityState}
                   onChange={(e) => setForm((f) => ({ ...f, cityState: e.target.value }))}
                 />
@@ -159,11 +162,13 @@ function QuoteSection() {
               </label>
               <label>
                 Metragem prevista da área (m²) *
-                <input value={form.area} onChange={(e) => setForm((f) => ({ ...f, area: e.target.value }))} />
+                <input maxLength={quoteLimits.area} value={form.area} onChange={(e) => setForm((f) => ({ ...f, area: e.target.value }))} />
+                {errors.area && <small>{errors.area}</small>}
               </label>
               <label className={styles.full}>
                 Observações técnicas, paginação pretendida ou restrições do canteiro
                 <textarea
+                  maxLength={quoteLimits.message}
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                 />
@@ -175,6 +180,10 @@ function QuoteSection() {
                 </Button>
                 <span className={styles.submitNote}>Sem compromisso de compra • Resposta rápida da engenharia</span>
               </div>
+              <p className={`${styles.full} ${styles.submitNote}`}>
+                Seus dados são usados apenas para responder a este orçamento.{' '}
+                <a href="/privacidade">Política de Privacidade</a>
+              </p>
             </form>
           )}
         </div>

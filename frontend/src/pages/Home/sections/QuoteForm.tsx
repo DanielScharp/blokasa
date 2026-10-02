@@ -7,6 +7,7 @@ import {
   maskPhone,
   productOptions,
   projectTypes,
+  quoteLimits,
   validateQuote,
   type QuoteErrors,
   type QuoteRequest,
@@ -75,6 +76,7 @@ export function QuoteForm() {
     id: `q-${key}`,
     name: key,
     value: form[key],
+    maxLength: key in quoteLimits ? quoteLimits[key as keyof typeof quoteLimits] : undefined,
     onChange: set(key),
     'aria-invalid': !!errors[key] || undefined,
     'aria-describedby': errors[key] ? `q-${key}-err` : undefined,
@@ -230,6 +232,10 @@ export function QuoteForm() {
                 </Button>
                 <p className={styles.note}>Retornamos com proposta formal e dimensionamento técnico.</p>
               </div>
+              <p className={`${styles.full} ${styles.privacy}`}>
+                Seus dados são usados apenas para responder a este orçamento.{' '}
+                <a href="/privacidade">Política de Privacidade</a>
+              </p>
             </form>
           )}
         </div>
