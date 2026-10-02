@@ -1,17 +1,11 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useEffect } from 'react'
+import { Link, useLocation, useSearchParams } from 'react-router'
+import { useQuoteForm } from '../../../components/quote/useQuoteForm'
 import { asset } from '../../../components/ui/asset'
 import { Button } from '../../../components/ui/Button'
+import { getProduct } from '../../../data/catalog'
 import { featuredProducts } from '../../../data/home'
-import {
-  buildWhatsAppQuote,
-  maskPhone,
-  productOptions,
-  projectTypes,
-  validateQuote,
-  type QuoteErrors,
-  type QuoteRequest,
-} from '../../../services/quotes'
-import { useQuoteSelection } from '../useQuoteSelection'
+import { productOptions, projectTypes, type QuoteRequest } from '../../../services/quotes'
 import styles from './QuoteForm.module.css'
 
 const quickModels = [
@@ -35,54 +29,23 @@ const empty: QuoteRequest = {
 const groups = [...new Set(productOptions.map((o) => o.group))]
 
 export function QuoteForm() {
-  const { model: selected } = useQuoteSelection()
-  const [form, setForm] = useState<QuoteRequest>(empty)
-  const [errors, setErrors] = useState<QuoteErrors>({})
-  const [sentUrl, setSentUrl] = useState<string | null>(null)
+  const { form, setForm, errors, errorId, field, onSubmit, sentUrl, reset } = useQuoteForm(empty)
+  const [params] = useSearchParams()
+  const { key } = useLocation()
+  const requested = params.get('modelo')
 
   const isQuick = quickModels.some((m) => m.value === form.model)
   const radioValue = isQuick ? form.model : 'outro'
 
-  // Card do catálogo clicado: já marca o modelo no formulário
-  const [appliedSelection, setAppliedSelection] = useState(selected)
-  if (selected !== appliedSelection) {
-    setAppliedSelection(selected)
-    if (selected) setForm((f) => ({ ...f, model: selected }))
-  }
-
-  const set =
-    (key: keyof QuoteRequest) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-      const value = key === 'phone' ? maskPhone(e.target.value) : e.target.value
-      setForm((f) => ({ ...f, [key]: value }))
-      if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }))
-    }
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    const found = validateQuote(form)
-    setErrors(found)
-    if (Object.keys(found).length) {
-      const first = Object.keys(found)[0]
-      document.getElementById(`q-${first}`)?.focus()
-      return
-    }
-    const url = buildWhatsAppQuote(form)
-    window.open(url, '_blank', 'noopener')
-    setSentUrl(url)
-  }
-
-  const field = (key: keyof QuoteRequest) => ({
-    id: `q-${key}`,
-    name: key,
-    value: form[key],
-    onChange: set(key),
-    'aria-invalid': !!errors[key] || undefined,
-    'aria-describedby': errors[key] ? `q-${key}-err` : undefined,
-  })
+  // Card "Especificar no orçamento" (/?modelo=slug#orcamento): já marca o modelo no formulário.
+  // Fica num efeito para não divergir do HTML pré-renderizado, que não conhece o parâmetro.
+  useEffect(() => {
+    if (requested && getProduct(requested)) setForm((f) => ({ ...f, model: requested }))
+  }, [requested, key, setForm])
 
   const error = (key: keyof QuoteRequest) =>
     errors[key] && (
-      <span id={`q-${key}-err`} className={styles.error}>
+      <span id={errorId(key)} className={styles.error}>
         {errors[key]}
       </span>
     )
@@ -114,7 +77,7 @@ export function QuoteForm() {
                 </a>
                 .
               </p>
-              <Button variant="glass" onClick={() => setSentUrl(null)}>
+              <Button variant="glass" onClick={reset}>
                 Fazer outro orçamento
               </Button>
             </div>
@@ -196,7 +159,7 @@ export function QuoteForm() {
                     className={`${styles.input} ${styles.select} ${styles.other}`}
                     aria-label="Escolha o produto"
                     value={form.model}
-                    onChange={set('model')}
+                    onChange={(e) => setForm((f) => ({ ...f, model: e.target.value }))}
                   >
                     <option value="outro">Ainda não sei / quero orientação</option>
                     {groups.map((g) => (
@@ -230,6 +193,10 @@ export function QuoteForm() {
                 </Button>
                 <p className={styles.note}>Retornamos com proposta formal e dimensionamento técnico.</p>
               </div>
+              <p className={`${styles.full} ${styles.privacy}`}>
+                Seus dados são usados apenas para responder a este orçamento.{' '}
+                <Link to="/privacidade">Política de Privacidade</Link>
+              </p>
             </form>
           )}
         </div>

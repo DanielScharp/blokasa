@@ -1,4 +1,5 @@
-import { asset } from '../../../components/ui/asset'
+import professionalMan from '../../../assets/home/professional-man.jpg?w=160&picture'
+import { Picture } from '../../../components/ui/Picture'
 import { metrics, testimonial } from '../../../data/home'
 import styles from './Metrics.module.css'
 
@@ -20,7 +21,7 @@ export function Metrics() {
 
         <figure className={styles.testimonial} data-reveal="zoom">
           <span className={styles.quoteIcon} aria-hidden>
-            <img src={asset('home/professional-man.jpg')} alt=""  />
+            <Picture picture={professionalMan} alt="" sizes="80px" />
           </span>
           <div className={styles.quoteBody}>
             <blockquote className={styles.quote}>"{testimonial.quote}"</blockquote>

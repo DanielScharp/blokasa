@@ -1,5 +1,6 @@
+import ogImage from '../../assets/home/hero-bg.jpg?og'
 import { useReveal } from '../../components/ui/useReveal'
-import { QuoteSelectionProvider } from './quoteSelection'
+import { pageMeta } from '../../data/seo'
 import { Benefits } from './sections/Benefits'
 import { Catalog } from './sections/Catalog'
 import { Faq } from './sections/Faq'
@@ -11,11 +12,20 @@ import { QuoteForm } from './sections/QuoteForm'
 import { TrustBar } from './sections/TrustBar'
 import { UsageGuide } from './sections/UsageGuide'
 
+export const meta = () =>
+  pageMeta({
+    title: 'Blokasa Pisos Intertravados | Orçamento de pisos de concreto',
+    description:
+      'Blokasa Pisos Intertravados: pisos intertravados, drenantes, guias e blocos de concreto direto de fábrica em São Paulo. Solicite seu orçamento.',
+    path: '/',
+    image: ogImage,
+  })
+
 export default function Home() {
   useReveal()
 
   return (
-    <QuoteSelectionProvider>
+    <>
       <Hero />
       <TrustBar />
       <Catalog />
@@ -26,6 +36,6 @@ export default function Home() {
       <Metrics />
       <Faq />
       <QuoteForm />
-    </QuoteSelectionProvider>
+    </>
   )
 }

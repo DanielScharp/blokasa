@@ -110,7 +110,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-.photo > img {
+.photo > picture > img {
   position: absolute;
   inset: 0;
   width: 100%;

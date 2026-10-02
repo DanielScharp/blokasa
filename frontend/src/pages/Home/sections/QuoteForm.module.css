@@ -227,6 +227,18 @@
   color: var(--color-sage);
 }
 
+.privacy {
+  margin-top: -8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-sage);
+}
+
+.privacy a {
+  color: var(--color-gold);
+  text-decoration: underline;
+}
+
 .success {
   position: relative;
   display: flex;

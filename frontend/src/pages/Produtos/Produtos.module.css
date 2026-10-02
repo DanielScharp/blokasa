@@ -1,0 +1,93 @@
+.intro {
+  padding-block: 56px 40px;
+  background: var(--color-surface-2);
+}
+
+.intro h1 {
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -1px;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.lead {
+  max-width: 640px;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--color-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.chips a {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-forest);
+  transition: background-color 0.15s ease;
+}
+
+.chips a:hover {
+  background: var(--color-surface-3);
+}
+
+.section {
+  padding-block: 56px;
+  background: var(--color-bg);
+}
+
+.section.alt {
+  background: var(--color-surface);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .intro h1 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}

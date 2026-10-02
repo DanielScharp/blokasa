@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import { asset } from '../ui/asset'
 import { ButtonLink } from '../ui/Button'
 import styles from './Header.module.css'
 
 const links = [
-  { href: '/#produtos', label: 'Produtos' },
+  { href: '/produtos', label: 'Produtos' },
   { href: '/#aplicacoes', label: 'Aplicações' },
   { href: '/#projetos', label: 'Projetos' },
   { href: '/#sobre', label: 'Sobre' },
@@ -24,21 +25,21 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <a href="/" className={styles.brand} aria-label="Blokasa, página inicial">
+        <Link to="/" className={styles.brand} aria-label="Blokasa, página inicial">
           <img src={asset('home/logo.png')} alt="" width={32} height={32} className={styles.logo} />
           <span className={styles.brandName}>Blokasa</span>
-        </a>
+        </Link>
 
         <nav className={styles.nav} aria-label="Principal">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className={styles.navLink}>
+            <Link key={l.href} to={l.href} className={styles.navLink}>
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className={styles.actions}>
-          <ButtonLink href="/#orcamento" className={styles.cta}>
+          <ButtonLink to="/#orcamento" className={styles.cta}>
             Solicitar orçamento
           </ButtonLink>
           {/* A área do cliente (login e meus orçamentos) entra numa próxima etapa */}
@@ -61,12 +62,12 @@ export function Header() {
       <div id="menu-mobile" className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`} hidden={!open}>
         <nav aria-label="Menu mobile" className={styles.drawerNav}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <Link key={l.href} to={l.href} onClick={() => setOpen(false)}>
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <ButtonLink href="/#orcamento" block onClick={() => setOpen(false)}>
+        <ButtonLink to="/#orcamento" block onClick={() => setOpen(false)}>
           Solicitar orçamento
         </ButtonLink>
       </div>

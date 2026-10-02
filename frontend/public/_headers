@@ -1,0 +1,16 @@
+# Headers HTTP do site (formato Netlify / Cloudflare Pages). Em outro host, configure os mesmos
+# valores; ver README > Deploy. O Content-Security-Policy principal vai em cada HTML (scripts/postbuild.mjs);
+# aqui ficam só as diretivas que não funcionam via <meta>.
+
+/*
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Arquivos com hash no nome nunca mudam: cache de 1 ano
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

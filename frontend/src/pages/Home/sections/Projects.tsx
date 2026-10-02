@@ -1,5 +1,6 @@
 import { asset } from '../../../components/ui/asset'
 import { ButtonLink } from '../../../components/ui/Button'
+import { Picture } from '../../../components/ui/Picture'
 import { SectionHeader } from '../../../components/ui/SectionHeader'
 import { projects } from '../../../data/home'
 import styles from './Projects.module.css'
@@ -21,7 +22,7 @@ export function Projects() {
         <ul className={styles.bento}>
           {projects.map((p, i) => (
             <li key={p.title} className={`${styles.card} ${styles[`c${i + 1}`]}`} data-reveal="zoom">
-              <img src={asset(p.image)} alt={p.title} loading="lazy" />
+              <Picture picture={p.image} alt={p.title} sizes="(max-width: 767px) 85vw, (max-width: 1023px) 50vw, 720px" />
               <span className={styles.tag}>{p.tag}</span>
               <div className={styles.caption}>
                 <h3 className={styles.title}>{p.title}</h3>

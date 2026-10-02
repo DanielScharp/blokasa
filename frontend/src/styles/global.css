@@ -42,6 +42,11 @@ img {
   max-width: 100%;
 }
 
+/* <Picture> não cria caixa própria: o <img> interno continua sendo o filho direto no layout */
+picture {
+  display: contents;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -104,6 +109,24 @@ textarea {
 .reveal-on [data-reveal='right'].is-visible { animation-name: reveal-right; }
 .reveal-on [data-reveal='zoom'].is-visible { animation-name: reveal-zoom; }
 .reveal-on [data-reveal='fade'].is-visible { animation-name: reveal-fade; }
+
+/*
+ * Entrada do topo da página (`data-intro="0..8"`): só CSS, roda assim que o HTML pré-renderizado aparece,
+ * sem esperar o JavaScript. Cada passo atrasa 90ms.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] {
+    animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+}
+[data-intro='1'] { animation-delay: 90ms; }
+[data-intro='2'] { animation-delay: 180ms; }
+[data-intro='3'] { animation-delay: 270ms; }
+[data-intro='4'] { animation-delay: 360ms; }
+[data-intro='5'] { animation-delay: 450ms; }
+[data-intro='6'] { animation-delay: 540ms; }
+[data-intro='7'] { animation-delay: 630ms; }
+[data-intro='8'] { animation-delay: 720ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html {

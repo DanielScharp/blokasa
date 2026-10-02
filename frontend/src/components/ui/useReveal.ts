@@ -3,9 +3,13 @@ import { useLayoutEffect } from 'react'
 const STEP_MS = 90
 const MAX_STEPS = 5
 
+// A primeira execução acontece na hidratação do HTML pré-renderizado, que já está pintado na tela
+let hydrating = true
+
 /**
  * Revela com animação os elementos `[data-reveal]` ao entrarem na viewport.
  * Elementos irmãos são escalonados automaticamente; `data-reveal-delay` (ms) soma um atraso base.
+ * Na hidratação, o que já está visível fica como está (escondê-lo para animar faria a tela piscar).
  */
 export function useReveal() {
   useLayoutEffect(() => {
@@ -17,7 +21,16 @@ export function useReveal() {
     }
 
     const root = document.documentElement
-    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+    let els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+
+    if (hydrating) {
+      hydrating = false
+      els = els.filter((el) => {
+        if (el.getBoundingClientRect().top >= window.innerHeight) return true
+        el.removeAttribute('data-reveal')
+        return false
+      })
+    }
 
     els.forEach((el) => {
       const siblings = Array.from(el.parentElement?.children ?? []).filter((c) => c.hasAttribute('data-reveal'))

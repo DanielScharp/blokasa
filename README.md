@@ -17,6 +17,7 @@ Design de referência: [Figma](https://www.figma.com/design/3aH6jvcdovkKnhkukWFd
 cd frontend
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # gera frontend/dist
+npm run build    # gera o site estático em frontend/build/client
+npm run preview  # serve o build em http://localhost:4173
 npm run lint
 ```

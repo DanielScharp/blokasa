@@ -1,0 +1,14 @@
+.section {
+  padding-block: 56px;
+  background: var(--color-bg);
+}
+
+.section.alt {
+  background: var(--color-surface);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

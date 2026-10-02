@@ -17,4 +17,7 @@ export const company = {
   emails: ['contato@blokasa.com.br', 'blokasapisos@gmail.com'],
 } as const
 
+/** Endereço público do site (canonical, Open Graph e sitemap). Confirmar o domínio definitivo. */
+export const siteUrl = 'https://www.blokasa.com.br'
+
 export const fullAddress = `${company.address.street} - ${company.address.district}, ${company.address.city} - ${company.address.state}, ${company.address.zip}`
