@@ -1,5 +1,7 @@
+import usoFoto from '../../../assets/home/uso-foto.jpg?picture'
 import { asset } from '../../../components/ui/asset'
 import { ButtonLink } from '../../../components/ui/Button'
+import { Picture } from '../../../components/ui/Picture'
 import { company } from '../../../data/company'
 import styles from './UsageGuide.module.css'
 
@@ -49,7 +51,11 @@ export function UsageGuide() {
         </div>
 
         <figure className={styles.photo} data-reveal="right" data-reveal-delay="150">
-          <img src={asset('home/uso-foto.png')} alt="Área comercial pavimentada com piso intertravado" loading="lazy" />
+          <Picture
+            picture={usoFoto}
+            alt="Área comercial pavimentada com piso intertravado"
+            sizes="(max-width: 1023px) 100vw, 600px"
+          />
           <figcaption className={styles.caption}>
             <span>
               <span className={styles.captionKicker}>Projeto em destaque</span>

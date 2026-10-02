@@ -42,6 +42,11 @@ img {
   max-width: 100%;
 }
 
+/* <Picture> não cria caixa própria: o <img> interno continua sendo o filho direto no layout */
+picture {
+  display: contents;
+}
+
 a {
   color: inherit;
   text-decoration: none;

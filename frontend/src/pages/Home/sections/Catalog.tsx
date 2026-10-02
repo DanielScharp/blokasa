@@ -1,4 +1,5 @@
 import { asset } from '../../../components/ui/asset'
+import { Picture } from '../../../components/ui/Picture'
 import { SectionHeader } from '../../../components/ui/SectionHeader'
 import { formatThicknesses, getProduct } from '../../../data/catalog'
 import { featuredProducts } from '../../../data/home'
@@ -24,7 +25,11 @@ export function Catalog() {
             return (
               <li key={item.slug} className={styles.card} data-reveal="zoom">
                 <div className={styles.media}>
-                  <img src={asset(item.image)} alt={item.title} loading="lazy" />
+                  <Picture
+                    picture={item.image}
+                    alt={item.title}
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px"
+                  />
                   {product && <span className={styles.badge}>Espessuras: {formatThicknesses(product)}</span>}
                 </div>
                 <div className={styles.body}>

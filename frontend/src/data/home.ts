@@ -1,10 +1,19 @@
 // Textos da home. Os números, obras e depoimento abaixo vieram do Figma e ainda
 // precisam ser confirmados pela Blokasa antes da publicação.
 
+import catalog1 from '../assets/home/catalog-1.jpg?picture'
+import catalog2 from '../assets/home/catalog-2.jpg?picture'
+import catalog3 from '../assets/home/catalog-3.jpg?picture'
+import proj1 from '../assets/home/proj-1.jpg?picture'
+import proj2 from '../assets/home/proj-2.jpg?picture'
+import proj3 from '../assets/home/proj-3.jpg?picture'
+import proj4 from '../assets/home/proj-4.jpg?picture'
+import proj5 from '../assets/home/proj-5.jpg?picture'
+
 export const featuredProducts = [
   {
     slug: 'piso-intertravado-retangular',
-    image: 'home/catalog-1.png',
+    image: catalog1,
     title: 'Piso Intertravado Retangular',
     description:
       'Design linear limpo, juntas uniformes e versatilidade de paginações (espinha de peixe, dama ou amarração contínua). Ideal para calçadas, garagens e acessos residenciais.',
@@ -12,7 +21,7 @@ export const featuredProducts = [
   },
   {
     slug: 'piso-intertravado-onda-16-faces',
-    image: 'home/catalog-2.png',
+    image: catalog2,
     title: 'Piso Intertravado Onda 16 Faces',
     description:
       'Encaixe sinuoso que trava as peças nos dois sentidos e resiste a manobras de veículos. Indicado para pátios, estacionamentos e vias de tráfego intenso.',
@@ -20,7 +29,7 @@ export const featuredProducts = [
   },
   {
     slug: 'piso-intertravado-sextavado',
-    image: 'home/catalog-3.png',
+    image: catalog3,
     title: 'Piso Intertravado Sextavado',
     description:
       'Formato hexagonal que valoriza projetos paisagísticos, praças e caminhos. Também disponível na versão drenante, para áreas que precisam absorver água da chuva.',
@@ -30,31 +39,31 @@ export const featuredProducts = [
 
 export const projects = [
   {
-    image: 'home/proj-1.png',
+    image: proj1,
     tag: 'Residencial Premium',
     title: 'Residência Alphaville Granja',
     text: 'Piso Retangular 6cm com mix de tonalidades natural e terracota em paginação corrida.',
   },
   {
-    image: 'home/proj-2.png',
+    image: proj2,
     tag: 'Logística & Comercial',
     title: 'Centro de Distribuição Cajamar',
     text: 'Piso Onda 16 Faces 10cm com resistência a carretas bi-trem e empilhadeiras.',
   },
   {
-    image: 'home/proj-3.png',
+    image: proj3,
     tag: 'Calçada Acessível',
     title: 'Passeio Corporativo Faria Lima',
     text: 'Superfície antiderrapante e alto conforto para fluxo de pedestres.',
   },
   {
-    image: 'home/proj-4.png',
+    image: proj4,
     tag: 'Praça Urbana',
     title: 'Parque Central & Esplanada',
     text: 'Integração urbana com pisos drenantes e paginação contrastante.',
   },
   {
-    image: 'home/proj-5.png',
+    image: proj5,
     tag: 'Paisagismo Residencial',
     title: 'Chácara Boa Vista',
     text: 'Desenho orgânico em sextavado com transição suave entre vegetação e caminhos.',

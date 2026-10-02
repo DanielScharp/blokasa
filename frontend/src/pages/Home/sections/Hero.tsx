@@ -1,5 +1,7 @@
+import heroBg from '../../../assets/home/hero-bg.jpg?w=640;1024;1600&picture'
 import { asset } from '../../../components/ui/asset'
 import { ButtonLink } from '../../../components/ui/Button'
+import { Picture } from '../../../components/ui/Picture'
 import styles from './Hero.module.css'
 
 const highlights = [
@@ -11,7 +13,7 @@ const highlights = [
 export function Hero() {
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <img className={styles.bg} src={asset('home/hero-bg.png')} alt="" fetchPriority="high" />
+      <Picture className={styles.bg} picture={heroBg} alt="" sizes="100vw" loading="eager" fetchPriority="high" />
       <div className={styles.overlay} aria-hidden />
 
       <div className={`container ${styles.inner}`}>

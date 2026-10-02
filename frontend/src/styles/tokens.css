@@ -17,8 +17,9 @@
   --color-cream: #faf9f5;
 
   /* Tipografia */
-  --font-display: 'Manrope', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* Servidas pelo próprio site (@fontsource-variable, importadas em main.tsx) */
+  --font-display: 'Manrope Variable', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
 
   /* Raios */
   --radius-md: 16px;
