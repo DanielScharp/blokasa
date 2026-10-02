@@ -61,16 +61,16 @@ export function ProductCard({ product, title = product.name, description, tags, 
   )
 }
 
-/** Card a partir só do catálogo (foto de recorte, medidas e cores). */
+/** Card a partir da primeira foto da galeria do produto (ou um espaço neutro, se ainda não houver foto). */
 export function CatalogProductCard({ product }: { product: Product }) {
-  const { imageFile, description, tags } = catalogCard(product)
+  const { imageFile, imageCutout, description, tags } = catalogCard(product)
   return (
     <ProductCard
       product={product}
       description={description}
       tags={tags}
       image={imageFile ? productPicture(imageFile) : undefined}
-      cutout
+      cutout={imageCutout}
     />
   )
 }

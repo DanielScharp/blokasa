@@ -3,8 +3,8 @@
 
 // Fotos dos cards já recortadas no formato do card (16:10), em vez de baixar a foto inteira
 import catalog1 from '../assets/produtos/retangular-calcada.jpg?aspect=16:10&w=480;960&picture'
-import catalog2 from '../assets/home/catalog-2.jpg?aspect=16:10&w=480;960&picture'
-import catalog3 from '../assets/home/catalog-3.jpg?aspect=16:10&w=480;960&picture'
+import catalog2 from '../assets/produtos/onda-16-faces-instalado.jpg?aspect=16:10&w=480;960&picture'
+import catalog3 from '../assets/produtos/sextavado-instalado.jpg?aspect=16:10&w=480;960&picture'
 import proj1 from '../assets/produtos/retangular-mix-de-cores.jpg?picture'
 import proj2 from '../assets/home/proj-2.jpg?picture'
 import proj3 from '../assets/home/proj-3.jpg?picture'

@@ -32,10 +32,10 @@ export interface Variant {
   featured?: boolean
   /** Peças por unidade de cálculo (m² de piso, m² de parede ou metro linear) */
   piecesPerUnit: number
-  /** Unidades (m² ou m) que cabem em um palete */
-  unitsPerPallet: number
-  /** Peso por unidade, em kg */
-  kgPerUnit: number
+  /** Unidades (m² ou m) que cabem em um palete. Sem esse dado, o simulador mostra "A confirmar". */
+  unitsPerPallet?: number
+  /** Peso por unidade, em kg. Sem esse dado, o simulador mostra "A confirmar" e o card não exibe peso. */
+  kgPerUnit?: number
 }
 
 export interface Pattern {

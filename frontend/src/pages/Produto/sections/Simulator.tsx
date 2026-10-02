@@ -12,14 +12,17 @@ const defaultCopy = {
 
 const pt = (n: number, digits = 0) => n.toLocaleString('pt-BR', { maximumFractionDigits: digits })
 
-/** Peças, paletes e peso já com a margem de perda; os números de cada variação vêm de `page.variants`. */
+/**
+ * Peças, paletes e peso já com a margem de perda; os números de cada variação vêm de `page.variants`.
+ * Paletes e peso ficam `null` quando o produto ainda não tem esse dado (mostra "A confirmar").
+ */
 function estimate(page: ProductPage, variantIndex: number, quantity: number) {
   const v = page.variants[variantIndex] ?? page.variants[0]
   const delivered = quantity * (1 + page.lossMargin)
   return {
     pieces: Math.ceil(delivered * v.piecesPerUnit),
-    pallets: Math.ceil(delivered / v.unitsPerPallet),
-    tons: (delivered * v.kgPerUnit) / 1000,
+    pallets: v.unitsPerPallet ? Math.ceil(delivered / v.unitsPerPallet) : null,
+    tons: v.kgPerUnit ? (delivered * v.kgPerUnit) / 1000 : null,
   }
 }
 
@@ -63,11 +66,11 @@ export function Simulator({ page, alt }: { page: ProductPage; alt: boolean }) {
             </div>
             <div>
               <dt>Paletes estimados</dt>
-              <dd>{pt(result.pallets)} paletes</dd>
+              <dd>{result.pallets != null ? `${pt(result.pallets)} paletes` : 'A confirmar'}</dd>
             </div>
             <div>
               <dt>Peso total estimado</dt>
-              <dd>{pt(result.tons, 1)} t</dd>
+              <dd>{result.tons != null ? `${pt(result.tons, 1)} t` : 'A confirmar'}</dd>
             </div>
           </dl>
           <p className={styles.note}>

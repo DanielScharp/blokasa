@@ -26,9 +26,11 @@ export function Variants({ page, alt }: { page: ProductPage; alt: boolean }) {
                 ))}
               </ul>
             )}
-            <span className={styles.weight}>
-              Peso aproximado: ≈ {v.kgPerUnit.toLocaleString('pt-BR')} kg/{page.unit}
-            </span>
+            {v.kgPerUnit != null && (
+              <span className={styles.weight}>
+                Peso aproximado: ≈ {v.kgPerUnit.toLocaleString('pt-BR')} kg/{page.unit}
+              </span>
+            )}
           </div>
         ))}
       </div>

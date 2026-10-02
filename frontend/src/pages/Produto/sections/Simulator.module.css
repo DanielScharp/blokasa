@@ -23,12 +23,20 @@
 
 .form input,
 .form select {
+  width: 100%;
+  /* Sem isso, um <select> com opção de texto longo (ex.: "14 × 19 × 19 cm — Complementação de alvenaria
+     estrutural") força a caixa a abrir além do container, mesmo com width:100% */
+  min-width: 0;
   height: 44px;
   padding: 0 14px;
   border: 1px solid var(--color-surface-3);
   border-radius: var(--radius-field);
   background: var(--color-bg);
   font-size: 14px;
+}
+
+.form select {
+  text-overflow: ellipsis;
 }
 
 .results {
