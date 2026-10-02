@@ -3,10 +3,11 @@
 //  2. Content-Security-Policy em cada HTML, com o hash dos scripts inline daquela página
 //  3. sitemap.xml e robots.txt a partir das páginas indexáveis (as que têm <link rel="canonical">)
 import { createHash } from 'node:crypto'
-import { copyFile, readdir, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, cp, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 
 const client = 'build/client'
+const hostingerDist = 'dist'
 
 // Toda página válida é pré-renderizada; o resto cai no 404.html, que os hosts estáticos servem com status 404.
 // Ele é o shell da SPA: o roteador carrega e mostra a página "não encontrada".
@@ -70,4 +71,6 @@ ${pages.map((url) => `  <url><loc>${url}</loc></url>`).join('\n')}
 )
 await writeFile(join(client, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`)
 
+await rm(hostingerDist, { recursive: true, force: true })
+await cp(client, hostingerDist, { recursive: true })
 console.log(`postbuild: CSP em ${files.length} arquivos HTML, sitemap com ${pages.length} URLs`)
