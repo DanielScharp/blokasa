@@ -37,6 +37,20 @@ scripts/              postbuild.mjs (ajustes do build) e serve.mjs (npm run prev
   estão em `src/data/home.ts` para revisão.
 - **Privacidade:** `/privacidade` é um rascunho baseado no que o site faz hoje e precisa ser revisado pela Blokasa.
 
+## Páginas de produto
+
+Todas as páginas `/produtos/:slug` usam o mesmo modelo (`src/pages/Produto`); o conteúdo de cada uma fica em
+`src/data/produtos/<categoria>.ts` (campos descritos em `types.ts`). Medidas e cores continuam em `catalog.ts`.
+
+Para publicar um produto:
+
+1. Coloque as fotos em `src/assets/produtos/` (até ~2400 px; recortes de peça marcados com `cutout: true`).
+2. Adicione a entrada do produto no arquivo da categoria, com o mesmo `slug` de `catalog.ts`.
+3. Rode `npm run build`: a página é pré-renderizada automaticamente e o card do produto passa a apontar para ela.
+
+Seções sem dado (paginações, documentos, cores quando só há Natural) ficam ocultas. O simulador usa os números de
+cada variação (`piecesPerUnit`, `unitsPerPallet`, `kgPerUnit`), os mesmos exibidos nos cards de espessura.
+
 ## Segurança do orçamento
 
 Os limites de cada campo ficam em `quoteLimits` (`src/services/quotes.ts`) e valem para o `maxLength` dos inputs e

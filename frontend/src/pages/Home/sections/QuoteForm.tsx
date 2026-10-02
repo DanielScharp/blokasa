@@ -1,18 +1,10 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
+import { useQuoteForm } from '../../../components/quote/useQuoteForm'
 import { asset } from '../../../components/ui/asset'
 import { Button } from '../../../components/ui/Button'
 import { featuredProducts } from '../../../data/home'
-import {
-  buildWhatsAppQuote,
-  maskPhone,
-  productOptions,
-  projectTypes,
-  quoteLimits,
-  validateQuote,
-  type QuoteErrors,
-  type QuoteRequest,
-} from '../../../services/quotes'
+import { productOptions, projectTypes, type QuoteRequest } from '../../../services/quotes'
 import { useQuoteSelection } from '../useQuoteSelection'
 import styles from './QuoteForm.module.css'
 
@@ -38,9 +30,7 @@ const groups = [...new Set(productOptions.map((o) => o.group))]
 
 export function QuoteForm() {
   const { model: selected } = useQuoteSelection()
-  const [form, setForm] = useState<QuoteRequest>(empty)
-  const [errors, setErrors] = useState<QuoteErrors>({})
-  const [sentUrl, setSentUrl] = useState<string | null>(null)
+  const { form, setForm, errors, errorId, field, onSubmit, sentUrl, reset } = useQuoteForm(empty)
 
   const isQuick = quickModels.some((m) => m.value === form.model)
   const radioValue = isQuick ? form.model : 'outro'
@@ -52,40 +42,9 @@ export function QuoteForm() {
     if (selected) setForm((f) => ({ ...f, model: selected }))
   }
 
-  const set =
-    (key: keyof QuoteRequest) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-      const value = key === 'phone' ? maskPhone(e.target.value) : e.target.value
-      setForm((f) => ({ ...f, [key]: value }))
-      if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }))
-    }
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    const found = validateQuote(form)
-    setErrors(found)
-    if (Object.keys(found).length) {
-      const first = Object.keys(found)[0]
-      document.getElementById(`q-${first}`)?.focus()
-      return
-    }
-    const url = buildWhatsAppQuote(form)
-    window.open(url, '_blank', 'noopener')
-    setSentUrl(url)
-  }
-
-  const field = (key: keyof QuoteRequest) => ({
-    id: `q-${key}`,
-    name: key,
-    value: form[key],
-    maxLength: key in quoteLimits ? quoteLimits[key as keyof typeof quoteLimits] : undefined,
-    onChange: set(key),
-    'aria-invalid': !!errors[key] || undefined,
-    'aria-describedby': errors[key] ? `q-${key}-err` : undefined,
-  })
-
   const error = (key: keyof QuoteRequest) =>
     errors[key] && (
-      <span id={`q-${key}-err`} className={styles.error}>
+      <span id={errorId(key)} className={styles.error}>
         {errors[key]}
       </span>
     )
@@ -117,7 +76,7 @@ export function QuoteForm() {
                 </a>
                 .
               </p>
-              <Button variant="glass" onClick={() => setSentUrl(null)}>
+              <Button variant="glass" onClick={reset}>
                 Fazer outro orçamento
               </Button>
             </div>
@@ -199,7 +158,7 @@ export function QuoteForm() {
                     className={`${styles.input} ${styles.select} ${styles.other}`}
                     aria-label="Escolha o produto"
                     value={form.model}
-                    onChange={set('model')}
+                    onChange={(e) => setForm((f) => ({ ...f, model: e.target.value }))}
                   >
                     <option value="outro">Ainda não sei / quero orientação</option>
                     {groups.map((g) => (

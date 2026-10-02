@@ -133,7 +133,7 @@ export const formatThicknesses = (p: Product) =>
 
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug)
 
-/** Hex de referência para cada cor mineral do catálogo (para suásculas de cor na página de produto). */
+/** Hex de referência para cada cor mineral do catálogo (amostras de cor na página de produto). */
 export const colorHex: Record<Color, string> = {
   Natural: '#c9c2b4',
   Vermelho: '#a13c2e',
@@ -141,31 +141,3 @@ export const colorHex: Record<Color, string> = {
   Amarelo: '#c99a3a',
   Terracota: '#b56a45',
 }
-
-/** Peças por m² e capacidade de carga por espessura, para a página de produto do Retangular. */
-export const rectangularSpecs = [
-  {
-    height: 4,
-    traffic: 'Tráfego Leve • Pedestres',
-    resistance: '≥ 35 MPa',
-    uses: ['Calçadas e passeios urbanos', 'Ciclovias e pátios de lazer', 'Áreas internas cobertas'],
-    weight: '≈ 100 kg/peça • ≈ 100 kg/m²',
-    featured: false,
-  },
-  {
-    height: 6,
-    traffic: 'Tráfego Médio • Veículos leves',
-    resistance: '≥ 35 MPa',
-    uses: ['Garagens residenciais e condominiais', 'Vias internas e calçadas', 'Acessos veiculares contínuos'],
-    weight: '≈ 130 kg/m²',
-    featured: true,
-  },
-  {
-    height: 8,
-    traffic: 'Tráfego Pesado',
-    resistance: '≥ 50 MPa',
-    uses: ['Vias urbanas e comerciais', 'Estacionamentos e pátios', 'Acessos de serviço e frota'],
-    weight: '≈ 175 kg/m²',
-    featured: false,
-  },
-] as const

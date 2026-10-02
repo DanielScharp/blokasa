@@ -1,0 +1,44 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.swatch {
+  height: 96px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+}
+
+.card h3 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-muted);
+}
+
+.tag {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
