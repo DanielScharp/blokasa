@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { Link } from 'react-router'
+import { useEffect } from 'react'
+import { Link, useLocation, useSearchParams } from 'react-router'
 import { useQuoteForm } from '../../../components/quote/useQuoteForm'
 import { asset } from '../../../components/ui/asset'
 import { Button } from '../../../components/ui/Button'
+import { getProduct } from '../../../data/catalog'
 import { featuredProducts } from '../../../data/home'
 import { productOptions, projectTypes, type QuoteRequest } from '../../../services/quotes'
-import { useQuoteSelection } from '../useQuoteSelection'
 import styles from './QuoteForm.module.css'
 
 const quickModels = [
@@ -29,18 +29,19 @@ const empty: QuoteRequest = {
 const groups = [...new Set(productOptions.map((o) => o.group))]
 
 export function QuoteForm() {
-  const { model: selected } = useQuoteSelection()
   const { form, setForm, errors, errorId, field, onSubmit, sentUrl, reset } = useQuoteForm(empty)
+  const [params] = useSearchParams()
+  const { key } = useLocation()
+  const requested = params.get('modelo')
 
   const isQuick = quickModels.some((m) => m.value === form.model)
   const radioValue = isQuick ? form.model : 'outro'
 
-  // Card do catálogo clicado: já marca o modelo no formulário
-  const [appliedSelection, setAppliedSelection] = useState(selected)
-  if (selected !== appliedSelection) {
-    setAppliedSelection(selected)
-    if (selected) setForm((f) => ({ ...f, model: selected }))
-  }
+  // Card "Especificar no orçamento" (/?modelo=slug#orcamento): já marca o modelo no formulário.
+  // Fica num efeito para não divergir do HTML pré-renderizado, que não conhece o parâmetro.
+  useEffect(() => {
+    if (requested && getProduct(requested)) setForm((f) => ({ ...f, model: requested }))
+  }, [requested, key, setForm])
 
   const error = (key: keyof QuoteRequest) =>
     errors[key] && (

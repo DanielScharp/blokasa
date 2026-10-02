@@ -1,7 +1,6 @@
 import ogImage from '../../assets/home/hero-bg.jpg?og'
 import { useReveal } from '../../components/ui/useReveal'
 import { pageMeta } from '../../data/seo'
-import { QuoteSelectionProvider } from './quoteSelection'
 import { Benefits } from './sections/Benefits'
 import { Catalog } from './sections/Catalog'
 import { Faq } from './sections/Faq'
@@ -26,7 +25,7 @@ export default function Home() {
   useReveal()
 
   return (
-    <QuoteSelectionProvider>
+    <>
       <Hero />
       <TrustBar />
       <Catalog />
@@ -37,6 +36,6 @@ export default function Home() {
       <Metrics />
       <Faq />
       <QuoteForm />
-    </QuoteSelectionProvider>
+    </>
   )
 }

@@ -5,11 +5,11 @@ import { ButtonLink } from '../ui/Button'
 import styles from './Footer.module.css'
 
 const productLinks = [
-  { href: '/#produtos', label: 'Pisos Intertravados' },
-  { href: '/#produtos', label: 'Pisos e Placas Drenantes' },
-  { href: '/#produtos', label: 'Série Sextavada & 16 Faces' },
-  { href: '/#produtos', label: 'Guias e Mini Guias' },
-  { href: '/#produtos', label: 'Blocos Estruturais e de Vedação' },
+  { href: '/produtos#pisos-intertravados', label: 'Pisos Intertravados' },
+  { href: '/produtos#pisos-drenantes', label: 'Pisos e Placas Drenantes' },
+  { href: '/produtos#pisos-intertravados', label: 'Série Sextavada & 16 Faces' },
+  { href: '/produtos#guias', label: 'Guias e Mini Guias' },
+  { href: '/produtos#blocos', label: 'Blocos Estruturais e de Vedação' },
 ]
 
 const institutionalLinks = [

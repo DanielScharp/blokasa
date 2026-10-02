@@ -62,7 +62,12 @@
   object-fit: cover;
 }
 
-/* Peça recortada: aparece inteira sobre o fundo neutro */
+/* Peça recortada (fotos com fundo branco): aparece inteira, sobre fundo branco */
+.mainImage.cutout,
+.thumb.cutout {
+  background: var(--color-white);
+}
+
 .cutout img {
   object-fit: contain;
   padding: 12%;

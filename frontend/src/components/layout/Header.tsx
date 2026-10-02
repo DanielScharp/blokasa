@@ -5,7 +5,7 @@ import { ButtonLink } from '../ui/Button'
 import styles from './Header.module.css'
 
 const links = [
-  { href: '/#produtos', label: 'Produtos' },
+  { href: '/produtos', label: 'Produtos' },
   { href: '/#aplicacoes', label: 'Aplicações' },
   { href: '/#projetos', label: 'Projetos' },
   { href: '/#sobre', label: 'Sobre' },

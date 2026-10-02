@@ -65,7 +65,10 @@ export function ProductHero({ page, product }: Props) {
             <Link to="/">Início</Link>
           </li>
           <li>
-            <Link to="/#produtos">{categories[product.category]}</Link>
+            <Link to="/produtos">Produtos</Link>
+          </li>
+          <li>
+            <Link to={`/produtos#${product.category}`}>{categories[product.category]}</Link>
           </li>
           <li aria-current="page">{product.name}</li>
         </ol>

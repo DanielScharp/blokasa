@@ -11,7 +11,7 @@ export function ErrorView({ title, text }: { title: string; text: string }) {
       <p className={styles.text}>{text}</p>
       <div className={styles.actions}>
         <ButtonLink to="/">Voltar ao início</ButtonLink>
-        <ButtonLink to="/#produtos" variant="soft">
+        <ButtonLink to="/produtos" variant="soft">
           Ver produtos
         </ButtonLink>
       </div>

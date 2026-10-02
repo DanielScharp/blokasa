@@ -1,8 +1,8 @@
 import { Fragment, type ReactNode } from 'react'
 import { data } from 'react-router'
 import { useReveal } from '../../components/ui/useReveal'
-import { getProduct, type Product } from '../../data/catalog'
-import { getProductPage, productPath, type ProductPage } from '../../data/produtos'
+import { getProduct, products, type Product } from '../../data/catalog'
+import { getProductPage, hasProductPage, productPath, type ProductPage } from '../../data/produtos'
 import { productOgImage } from '../../data/produtos/images'
 import { pageMeta } from '../../data/seo'
 import NotFound from '../NotFound/NotFound'
@@ -11,6 +11,7 @@ import { Colors } from './sections/Colors'
 import { Patterns } from './sections/Patterns'
 import { ProductHero } from './sections/ProductHero'
 import { ProductQuote } from './sections/ProductQuote'
+import { RelatedProducts } from './sections/RelatedProducts'
 import { Simulator } from './sections/Simulator'
 import { TechSheet } from './sections/TechSheet'
 import { Variants } from './sections/Variants'
@@ -50,6 +51,10 @@ function sections(page: ProductPage, product: Product) {
   if (product.colors.length > 1) list.push((alt) => <Colors colors={product.colors} copy={page.colorsCopy} alt={alt} />)
   list.push((alt) => <TechSheet page={page} alt={alt} />)
   list.push((alt) => <Simulator page={page} alt={alt} />)
+  const related = products.filter(
+    (p) => p.category === product.category && p.slug !== product.slug && hasProductPage(p.slug),
+  )
+  if (related.length) list.push((alt) => <RelatedProducts related={related} current={product} alt={alt} />)
   return list.map((render, i) => <Fragment key={i}>{render(i % 2 === 1)}</Fragment>)
 }
 

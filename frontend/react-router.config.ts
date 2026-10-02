@@ -11,6 +11,6 @@ export default {
   prerender() {
     const unknown = productPages.filter((p) => !getProduct(p.slug)).map((p) => p.slug)
     if (unknown.length) throw new Error(`Páginas de produto sem item em catalog.ts: ${unknown.join(', ')}`)
-    return ['/', '/privacidade', ...productPages.map((p) => productPath(p.slug))]
+    return ['/', '/produtos', '/privacidade', ...productPages.map((p) => productPath(p.slug))]
   },
 } satisfies Config
