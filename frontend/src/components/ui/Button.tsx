@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router'
 import styles from './Button.module.css'
 
 type Variant = 'primary' | 'forest' | 'light' | 'glass' | 'soft' | 'outline'
@@ -15,6 +16,7 @@ interface BaseProps {
 const cx = (variant: Variant, size: Size, block?: boolean, extra?: string) =>
   [styles.button, styles[variant], styles[size], block && styles.block, extra].filter(Boolean).join(' ')
 
+/** Link com cara de botão. `to` navega dentro do site sem recarregar; `href` é para âncoras e links externos. */
 export function ButtonLink({
   variant = 'primary',
   size = 'md',
@@ -22,12 +24,24 @@ export function ButtonLink({
   block,
   children,
   className,
+  to,
   ...rest
-}: BaseProps & AnchorHTMLAttributes<HTMLAnchorElement>) {
-  return (
-    <a className={cx(variant, size, block, className)} {...rest}>
+}: BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> & { to?: string }) {
+  const content = (
+    <>
       <span>{children}</span>
       {icon && <img src={icon} alt="" aria-hidden className={styles.icon} />}
+    </>
+  )
+  const cls = cx(variant, size, block, className)
+
+  return to ? (
+    <Link to={to} className={cls} {...rest}>
+      {content}
+    </Link>
+  ) : (
+    <a className={cls} {...rest}>
+      {content}
     </a>
   )
 }

@@ -1,8 +1,11 @@
 import { useMemo, useState, type FormEvent } from 'react'
+import { data, Link } from 'react-router'
 import { Button, ButtonLink } from '../../components/ui/Button'
 import { company } from '../../data/company'
 import { colorHex, getProduct, rectangularSpecs } from '../../data/catalog'
 import { buildWhatsAppQuote, maskPhone, quoteLimits, validateQuote, type QuoteErrors } from '../../services/quotes'
+import { pageMeta } from '../../data/seo'
+import type { Route } from './+types/Produto'
 import styles from './Produto.module.css'
 
 const patterns = [
@@ -182,7 +185,7 @@ function QuoteSection() {
               </div>
               <p className={`${styles.full} ${styles.submitNote}`}>
                 Seus dados são usados apenas para responder a este orçamento.{' '}
-                <a href="/privacidade">Política de Privacidade</a>
+                <Link to="/privacidade">Política de Privacidade</Link>
               </p>
             </form>
           )}
@@ -192,14 +195,33 @@ function QuoteSection() {
   )
 }
 
+function loadProduct(slug: string) {
+  if (slug !== product.slug) throw data(null, { status: 404 })
+  return { slug }
+}
+
+// `loader` roda no build (pré-render); `clientLoader`, na navegação pelo site e em URLs fora do pré-render
+export const loader = ({ params }: Route.LoaderArgs) => loadProduct(params.slug)
+export const clientLoader = ({ params }: Route.ClientLoaderArgs) => loadProduct(params.slug)
+
+export const meta = ({ loaderData }: Route.MetaArgs) =>
+  loaderData
+    ? pageMeta({
+        title: `${product.name} | Blokasa`,
+        description:
+          'Paver holandês 10x20 em 4, 6 e 8 cm: espessuras, paginações, cores, ficha técnica e simulador de quantidade. Orçamento direto de fábrica.',
+        path: `/produtos/${loaderData.slug}`,
+      })
+    : []
+
 export default function Produto() {
   return (
     <>
       <nav className={styles.breadcrumb} aria-label="Breadcrumb">
         <div className="container" style={{ display: 'flex', gap: 8 }}>
-          <a href="/">Início</a>
+          <Link to="/">Início</Link>
           <span>/</span>
-          <a href="/#produtos">Catálogo de Modelos</a>
+          <Link to="/#produtos">Catálogo de Modelos</Link>
           <span>/</span>
           <span>{product.name} (10x20)</span>
         </div>

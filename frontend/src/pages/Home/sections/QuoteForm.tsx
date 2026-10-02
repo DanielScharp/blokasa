@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { Link } from 'react-router'
 import { asset } from '../../../components/ui/asset'
 import { Button } from '../../../components/ui/Button'
 import { featuredProducts } from '../../../data/home'
@@ -234,7 +235,7 @@ export function QuoteForm() {
               </div>
               <p className={`${styles.full} ${styles.privacy}`}>
                 Seus dados são usados apenas para responder a este orçamento.{' '}
-                <a href="/privacidade">Política de Privacidade</a>
+                <Link to="/privacidade">Política de Privacidade</Link>
               </p>
             </form>
           )}

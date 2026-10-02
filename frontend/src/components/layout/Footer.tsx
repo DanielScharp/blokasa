@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { company, fullAddress } from '../../data/company'
 import { asset } from '../ui/asset'
 import { ButtonLink } from '../ui/Button'
@@ -17,6 +18,7 @@ const institutionalLinks = [
   { href: '/#aplicacoes', label: 'Aplicações por Uso' },
   { href: '/#duvidas', label: 'Perguntas Frequentes' },
   { href: '/#orcamento', label: 'Solicitar Orçamento' },
+  { href: '/privacidade', label: 'Política de Privacidade' },
 ]
 
 const year = new Date().getFullYear()
@@ -46,7 +48,7 @@ export function Footer() {
             <ul className={styles.list}>
               {productLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href}>{l.label}</a>
+                  <Link to={l.href}>{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -57,7 +59,7 @@ export function Footer() {
             <ul className={styles.list}>
               {institutionalLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href}>{l.label}</a>
+                  <Link to={l.href}>{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -87,14 +89,15 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <ButtonLink href="/#orcamento" variant="outline" icon={asset('home/foot-doc.svg')} className={styles.memorial}>
+            <ButtonLink to="/#orcamento" variant="outline" icon={asset('home/foot-doc.svg')} className={styles.memorial}>
               Enviar projeto para cotação
             </ButtonLink>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.small}>
+          {/* O ano vem do build; suppressHydrationWarning evita aviso na virada do ano */}
+          <p className={styles.small} suppressHydrationWarning>
             © {year} {company.legalName}. Todos os direitos reservados.
           </p>
           <p className={styles.note}>Atendimento para obras de todos os portes, sob consulta de metragem.</p>

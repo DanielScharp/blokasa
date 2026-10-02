@@ -1,8 +1,16 @@
 import { company, fullAddress } from '../../data/company'
+import { pageMeta } from '../../data/seo'
 import styles from './Privacidade.module.css'
 
 // Rascunho com base no que o site faz hoje (formulário → WhatsApp, sem cadastro nem rastreamento).
 // Precisa ser revisado pela Blokasa antes da publicação.
+export const meta = () =>
+  pageMeta({
+    title: 'Política de Privacidade | Blokasa',
+    description: 'Como a Blokasa usa os dados informados no formulário de orçamento.',
+    path: '/privacidade',
+  })
+
 export default function Privacidade() {
   return (
     <article className={`container ${styles.page}`}>

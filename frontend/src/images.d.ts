@@ -8,3 +8,8 @@ declare module '*&picture' {
   const picture: import('./components/ui/Picture').PictureSource
   export default picture
 }
+
+declare module '*?og' {
+  const src: string
+  export default src
+}

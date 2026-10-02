@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { asset } from '../../../components/ui/asset'
 import { Picture } from '../../../components/ui/Picture'
 import { SectionHeader } from '../../../components/ui/SectionHeader'
@@ -43,10 +44,10 @@ export function Catalog() {
                 </div>
                 <div className={styles.footer}>
                   {item.slug === 'piso-intertravado-retangular' ? (
-                    <a href="/produtos/piso-intertravado-retangular" className={styles.specify}>
+                    <Link to="/produtos/piso-intertravado-retangular" className={styles.specify}>
                       Ver ficha técnica completa
                       <img src={asset('home/icon-arrow-right.svg')} alt="" width={12} height={12} />
-                    </a>
+                    </Link>
                   ) : (
                   <a href="#orcamento" className={styles.specify} onClick={() => setModel(item.slug)}>
                     Especificar no orçamento

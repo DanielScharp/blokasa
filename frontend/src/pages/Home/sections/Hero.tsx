@@ -18,18 +18,18 @@ export function Hero() {
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.content}>
-          <p data-reveal className={styles.badge}>
+          <p data-intro="0" className={styles.badge}>
             <span className={styles.dot} aria-hidden />
             Pisos intertravados para sua obra
           </p>
-          <h1 data-reveal id="hero-title" className={styles.title}>
+          <h1 data-intro="1" id="hero-title" className={styles.title}>
             Resistência, drenagem e acabamento para áreas externas.
           </h1>
-          <p data-reveal className={styles.subtitle}>
+          <p data-intro="2" className={styles.subtitle}>
             Fornecimento direto de fábrica, variedade de modelos normalizados e atendimento técnico consultivo para
             projetos residenciais, comerciais e urbanos.
           </p>
-          <div data-reveal className={styles.actions}>
+          <div data-intro="3" className={styles.actions}>
             <ButtonLink href="#orcamento" variant="light" className={styles.primary}>
               Solicitar orçamento
             </ButtonLink>
@@ -40,8 +40,8 @@ export function Hero() {
         </div>
 
         <ul className={styles.highlights}>
-          {highlights.map((h) => (
-            <li key={h.text} data-reveal data-reveal-delay="500">
+          {highlights.map((h, i) => (
+            <li key={h.text} data-intro={6 + i}>
               <img src={asset(h.icon)} alt="" width={h.w} height={h.h} />
               {h.text}
             </li>
