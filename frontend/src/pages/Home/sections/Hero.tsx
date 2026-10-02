@@ -1,4 +1,5 @@
-import heroBg from '../../../assets/home/hero-bg.jpg?w=640;1024;1600&picture'
+// Qualidade menor: a foto fica sob uma camada escura de 40–90% e é a maior imagem da página (LCP)
+import heroBg from '../../../assets/home/hero-bg.jpg?w=640;768;1024;1600&quality=40&picture'
 import { asset } from '../../../components/ui/asset'
 import { ButtonLink } from '../../../components/ui/Button'
 import { Picture } from '../../../components/ui/Picture'

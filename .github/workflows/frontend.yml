@@ -1,0 +1,44 @@
+name: Front-end
+
+on:
+  push:
+    branches: [main]
+    paths: ['frontend/**', '.github/workflows/frontend.yml']
+  pull_request:
+    paths: ['frontend/**', '.github/workflows/frontend.yml']
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      # Falha com vulnerabilidade alta ou crítica nas dependências que vão para o site
+      - run: npm audit --omit=dev --audit-level=high
+
+      # Desempenho, acessibilidade e SEO nas páginas principais (limites em lighthouserc.json)
+      - run: npx --yes @lhci/cli@0.15.x autorun
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse
+          path: frontend/.lighthouseci/relatorios
+          if-no-files-found: ignore

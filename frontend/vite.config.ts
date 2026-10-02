@@ -31,6 +31,10 @@ const withDefaults = (url: URL, flag: string, defaults: Record<string, string>) 
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    // Fontes sempre como arquivo: o CSP (font-src 'self') não aceita fontes embutidas em data:
+    assetsInlineLimit: (file) => (file.endsWith('.woff2') ? false : undefined),
+  },
   plugins: [
     reactRouter(),
     imagetools({

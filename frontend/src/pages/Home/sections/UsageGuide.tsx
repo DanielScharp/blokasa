@@ -1,4 +1,4 @@
-import usoFoto from '../../../assets/home/uso-foto.jpg?picture'
+import usoFoto from '../../../assets/produtos/retangular-espinha-de-peixe.jpg?picture'
 import { asset } from '../../../components/ui/asset'
 import { ButtonLink } from '../../../components/ui/Button'
 import { Picture } from '../../../components/ui/Picture'

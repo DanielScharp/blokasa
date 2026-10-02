@@ -8,7 +8,7 @@ export interface SectionCopy {
 }
 
 export interface GalleryImage {
-  /** Caminho dentro de src/assets, ex.: "produtos/piso-intertravado-retangular.png" */
+  /** Arquivo em src/assets/produtos, ex.: "piso-intertravado-retangular.png" */
   file: string
   alt: string
   caption?: string

@@ -1,10 +1,11 @@
 // Textos da home. Os números, obras e depoimento abaixo vieram do Figma e ainda
 // precisam ser confirmados pela Blokasa antes da publicação.
 
-import catalog1 from '../assets/home/catalog-1.jpg?picture'
-import catalog2 from '../assets/home/catalog-2.jpg?picture'
-import catalog3 from '../assets/home/catalog-3.jpg?picture'
-import proj1 from '../assets/home/proj-1.jpg?picture'
+// Fotos dos cards já recortadas no formato do card (16:10), em vez de baixar a foto inteira
+import catalog1 from '../assets/produtos/retangular-calcada.jpg?aspect=16:10&w=480;960&picture'
+import catalog2 from '../assets/home/catalog-2.jpg?aspect=16:10&w=480;960&picture'
+import catalog3 from '../assets/home/catalog-3.jpg?aspect=16:10&w=480;960&picture'
+import proj1 from '../assets/produtos/retangular-mix-de-cores.jpg?picture'
 import proj2 from '../assets/home/proj-2.jpg?picture'
 import proj3 from '../assets/home/proj-3.jpg?picture'
 import proj4 from '../assets/home/proj-4.jpg?picture'

@@ -16,10 +16,10 @@ const retangular: ProductPage = {
       'Paver holandês 10x20 em 4, 6 e 8 cm: espessuras, paginações, cores, ficha técnica e simulador de quantidade. Orçamento direto de fábrica em São Paulo.',
   },
   gallery: [
-    { file: 'home/catalog-1.jpg', alt: 'Calçada em parque pavimentada com piso intertravado retangular', caption: 'Calçada em amarração linear' },
-    { file: 'home/proj-1.jpg', alt: 'Passeio com piso retangular em mix de cores', caption: 'Mix de tonalidades em paginação corrida' },
-    { file: 'home/uso-foto.jpg', alt: 'Piso retangular em espinha de peixe com faixas contrastantes', caption: 'Espinha de peixe com faixas contrastantes' },
-    { file: 'produtos/piso-intertravado-retangular.png', alt: 'Peça de piso intertravado retangular', caption: 'Peça 10 x 20 cm', cutout: true },
+    { file: 'retangular-calcada.jpg', alt: 'Calçada em parque pavimentada com piso intertravado retangular', caption: 'Calçada em amarração linear' },
+    { file: 'retangular-mix-de-cores.jpg', alt: 'Passeio com piso retangular em mix de cores', caption: 'Mix de tonalidades em paginação corrida' },
+    { file: 'retangular-espinha-de-peixe.jpg', alt: 'Piso retangular em espinha de peixe com faixas contrastantes', caption: 'Espinha de peixe com faixas contrastantes' },
+    { file: 'piso-intertravado-retangular.png', alt: 'Peça de piso intertravado retangular', caption: 'Peça 10 x 20 cm', cutout: true },
   ],
   highlights: [
     { label: 'Dimensões NBR', value: '10 x 20 cm' },

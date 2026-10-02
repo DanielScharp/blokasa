@@ -60,3 +60,39 @@ para a validação. Quando a API .NET (`POST /api/orcamentos`) entrar, ela preci
 - limitar requisições por IP (rate limit) e ter um campo honeypot contra robôs;
 - aceitar CORS só do domínio do site e responder apenas via HTTPS;
 - manter segredos (connection string, chaves) só no servidor: tudo que começa com `VITE_` vai para o bundle público.
+
+## Deploy
+
+`npm run build` gera o site completo em `build/client` (HTML pré-renderizado, `404.html`, `sitemap.xml`,
+`robots.txt` e `_headers`). Basta publicar essa pasta em qualquer host estático com HTTPS e compressão
+(brotli/gzip). Antes de publicar, confirme o domínio em `siteUrl` (`src/data/company.ts`): ele vai no canonical,
+no Open Graph e no sitemap.
+
+O host precisa:
+
+| O quê | Como |
+|---|---|
+| URL sem arquivo | servir `pasta/index.html`; se não existir, `404.html` com **status 404** (sem reescrever tudo para `index.html`) |
+| `Strict-Transport-Security` | `max-age=31536000` |
+| `Content-Security-Policy` | `frame-ancestors 'none'; upgrade-insecure-requests` (o restante do CSP já vai em cada HTML) |
+| `X-Frame-Options` | `DENY` |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), payment=(), usb=()` |
+| `Cross-Origin-Opener-Policy` | `same-origin` |
+| Cache de `/assets/*` | `Cache-Control: public, max-age=31536000, immutable` (nomes com hash) |
+
+Netlify e Cloudflare Pages leem `public/_headers` sozinhos. Em nginx, o equivalente é
+`try_files $uri $uri/index.html =404; error_page 404 /404.html;` mais um `add_header` para cada linha da tabela; no
+IIS, `httpErrors` para o 404 e `customHeaders` no `web.config`.
+
+O CSP de cada página libera só os scripts inline daquela página, pelo hash (`scripts/postbuild.mjs`). Por isso, não
+use estilos ou scripts inline nos componentes (`style={{…}}`, `dangerouslySetInnerHTML`): eles seriam bloqueados.
+Para conferir: `npm run preview` e o console do navegador não deve mostrar violações de CSP.
+
+## Qualidade contínua
+
+O workflow `.github/workflows/frontend.yml` roda em cada PR: lint, build, `npm audit` (falha com vulnerabilidade
+alta nas dependências do site) e Lighthouse CI nas páginas principais (`lighthouserc.json`). Acessibilidade, SEO,
+boas práticas, CLS, TBT e peso da página fazem o PR falhar; desempenho e LCP ainda são avisos até termos as primeiras
+medições do CI. O Dependabot (`.github/dependabot.yml`) abre PRs semanais de atualização.
